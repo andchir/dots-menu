@@ -30,8 +30,9 @@
 
         var self = this;
 
+        this.isInitialized = false;
         var mainOptions = {
-
+            dotsMenuButtonWidth: 50
         };
 
         /**
@@ -44,6 +45,7 @@
                 self.addMenuClasses();
                 self.addMenuLastChildClasses();
                 self.onResize();
+                self.isInitialized = true;
             });
             window.addEventListener('resize', this.onResize.bind(this));
         };
@@ -52,21 +54,18 @@
          * Initialize dots drop down menu
          */
         this.dotsDropDownInit = function () {
-            var menuParentContainer, dotsMenu, menuArr = document.querySelectorAll('.dots-menu');
+            var menuParentContainer, dotsMenu, dotsMenuDrop, menuArr = document.querySelectorAll('.dots-menu');
             menuArr.forEach(function(menuEl) {
                 menuParentContainer = menuEl.parentNode;
                 dotsMenu = self.createElement('ul', {
                     className: 'dots-menu nav-item-right-drop',
                     innerHTML: '<li></li>'
                 });
-                self.append(dotsMenu, self.createElement('li', {
+                dotsMenuDrop = self.append(dotsMenu, self.createElement('li', {
                     className: 'nav-item drop-right',
-                    innerHTML: '<ul>' + menuEl.innerHTML + '</ul>'
+                    innerHTML: '<ul></ul>'
                 }));
                 self.append(menuParentContainer, dotsMenu);
-                dotsMenu.querySelectorAll('li.nav-item').forEach(function(liEl) {
-                    liEl.style.display = 'none';
-                });
             });
         };
 
@@ -81,7 +80,7 @@
             parents.forEach(function(parent) {
                 parent.querySelectorAll('li.nav-item').forEach(function(liEl) {
                     if (liEl.querySelectorAll('ul').length > 0) {
-                        self.addClass(liEl, 'nav-item-parent');
+                        liEl.classList.add('nav-item-parent');
                     }
                 });
             });
@@ -91,33 +90,60 @@
          * Add class "drop-right" to last menu item
          */
         this.addMenuLastChildClasses = function () {
-            this.addClass(document.querySelector('.dots-menu:not(.nav-item-right-drop) > li.nav-item:last-child'), 'drop-right');
+            document.querySelector('.dots-menu:not(.nav-item-right-drop) > li.nav-item:last-child')
+                .classList.add('drop-right');
         };
 
         /**
          * On window resize
          */
         this.onResize = function () {
-            var elRect, liFirstlevelArr,
+            var elRect, liFirstlevelArr, menuParentContainer, dotsMenu, dotsMenuDrop,
                 windowWidth = window.innerWidth,
                 menuArr = document.querySelectorAll('.dots-menu:not(.nav-item-right-drop)');
             menuArr.forEach(function(menuEl) {
+                menuParentContainer = menuEl.parentNode;
+                dotsMenu = menuParentContainer.querySelector('.nav-item-right-drop');
+                dotsMenuDrop = dotsMenu.querySelector('.nav-item > ul');
+
                 liFirstlevelArr = Array.prototype.slice.call(menuEl.childNodes);
                 liFirstlevelArr = liFirstlevelArr.filter(function (el) {
                     return el.tagName && el.tagName.toLowerCase() === 'li';
                 });
 
+                var posLeft = 0, dropCount = 0;
                 liFirstlevelArr.forEach(function(liEl, index) {
+                    elRect = liEl.getBoundingClientRect();
                     if (index === 0) {
+                        posLeft = elRect.left;
+                        posLeft += elRect.width;
                         return;
                     }
-
-                    elRect = liEl.getBoundingClientRect();
-
-                    //liEl.style.display = elRect.left === 0 ? 'none' : 'block';
-
-                    console.log(windowWidth, index, elRect);
+                    if (posLeft + elRect.width + mainOptions.dotsMenuButtonWidth > windowWidth) {
+                        liEl.classList.add('hidden');
+                        if (!document.getElementById('drop-menu-item-' + index)) {
+                            self.append(dotsMenuDrop, self.createElement('li', {
+                                id: 'drop-menu-item-' + index,
+                                className: 'nav-item',
+                                innerHTML: liEl.innerHTML
+                            }), self.isInitialized);
+                        }
+                        dropCount++;
+                    } else {
+                        liEl.classList.remove('hidden');
+                        var dropItem = document.getElementById('drop-menu-item-' + index);
+                        if (dropItem) {
+                            self.removeEl(dropItem);
+                        }
+                    }
+                    posLeft += elRect.width;
                 });
+                if (dropCount > 0) {
+                    self.addMenuClasses([dotsMenu]);
+                    dotsMenu.style.display ='block';
+                } else {
+                    dotsMenu.style.display ='none';
+                }
             });
         };
 
@@ -167,32 +193,6 @@
         };
 
         /**
-         * Add class
-         * @param el
-         */
-        this.addClass = function (el, className) {
-            if (el.classList)
-                el.classList.add(className);
-            else
-                el.className += ' ' + className;
-        };
-
-        /**
-         * Remove Class
-         * @param el
-         */
-        this.removeClass = function (el, className){
-            if (el.classList)
-                el.classList.remove(className);
-            else
-                el.className = el.className
-                    .replace(
-                        new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'),
-                        ' '
-                    );
-        };
-
-        /**
          * Create element from properties object
          * @param tagName
          * @param attributes
@@ -224,15 +224,21 @@
          * Append child element
          * @param selector
          * @param element
+         * @param prepend
          * @returns {*}
          */
-        this.append = function (selector, element) {
+        this.append = function (selector, element, prepend) {
+            prepend = prepend || false;
             var parents = typeof selector === 'string'
                 ? document.querySelectorAll(selector)
                 : [selector];
             Array.prototype.forEach.call(Object.keys(parents), function (key) {
                 if (typeof parents[key] === 'object') {
-                    parents[key].appendChild(element);
+                    if (prepend) {
+                        parents[key].insertBefore(element, parents[key].firstChild);
+                    } else {
+                        parents[key].appendChild(element);
+                    }
                 }
             });
             return element;

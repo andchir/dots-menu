@@ -11,9 +11,10 @@
 .dots-menu > .nav-item:hover > .nav-link,
 .dots-menu > .nav-item:hover > .nav-link { background-color: #eee; border-color: #eee; color: #585858; }
 .dots-menu .nav-item:hover > ul { display: block; }
+.dots-menu .hidden { position: fixed; top: -300px; left: -300px; }
 
 .dots-menu > .nav-item > ul {  }
-.dots-menu ul { width: 250px; position: absolute; left: 0; top: 100%; padding: 7px 0; margin: 0; list-style-type: none; z-index: 500; display: none; }
+.dots-menu ul { width: 220px; position: absolute; left: 0; top: 100%; padding: 7px 0; margin: 0; list-style-type: none; z-index: 500; display: none; }
 .dots-menu ul li { line-height: 1.5; width: 100%; padding: 3px 7px; margin: 0; position: relative; border-left: 1px solid #cbcbcb; border-right: 1px solid #cbcbcb; background-color: #fff; }
 .dots-menu ul li:first-child { padding-top: 7px; border-top: 1px solid #cbcbcb; }
 .dots-menu ul li:last-child { padding-bottom: 7px; border-bottom: 1px solid #cbcbcb; }
@@ -44,7 +45,7 @@
 .dots-menu .nav-item.drop-right ul .nav-item.nav-item-parent:hover:after { border-width: 7px 7px 7px 0; border-color: transparent #fff transparent transparent; left: -7px; }
 
 /* nav-item-right-drop */
-.dots-menu.nav-item-right-drop { position: absolute; right: 0; top: 0; width: 50px; height: 100%; background-color: #f4f4f4; transition: background-color 300ms; }
+.dots-menu.nav-item-right-drop { position: absolute; right: 0; top: 0; width: 50px; height: 100%; display: none; background-color: #f4f4f4; transition: background-color 300ms; }
 .dots-menu.nav-item-right-drop:hover { background-color: #eee; }
 .dots-menu.nav-item-right-drop > .nav-item { position: absolute; right: 0; top: 0; width: 50px; height: 100%; cursor: pointer; background-color: transparent; }
 .dots-menu.nav-item-right-drop:hover > .nav-item:before,
