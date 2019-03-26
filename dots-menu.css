@@ -1,0 +1,69 @@
+
+/* dots-menu */
+.dots-menu-container { position: relative; background-color: #fff; border-bottom: 1px solid #cbcbcb; }
+.dots-menu-container:after { content: ''; display: block; clear: both; }
+.dots-menu-container * { box-sizing: border-box; }
+.dots-menu { width: 960px; max-width: 100%; list-style-type: none; padding: 0; margin: 0 auto; box-sizing: border-box; }
+.dots-menu-fluid { max-width: 100%; width: 100%; }
+.dots-menu > .nav-item { display: block; float: left; padding: 0 1px; margin: 0; position: relative; }
+.dots-menu > .nav-item > .nav-link { display: block; padding: 16px 22px; text-decoration: none; color: #777; transition: background-color 300ms; }
+.dots-menu > .nav-item.nav-item-parent > .nav-link { padding-bottom: 9px; border-bottom: 7px solid #e9e9e9; }
+.dots-menu > .nav-item:hover > .nav-link,
+.dots-menu > .nav-item:hover > .nav-link { background-color: #eee; border-color: #eee; color: #585858; }
+.dots-menu .nav-item:hover > ul { display: block; }
+
+.dots-menu > .nav-item > ul {  }
+.dots-menu ul { width: 250px; position: absolute; left: 0; top: 100%; padding: 7px 0; margin: 0; list-style-type: none; z-index: 500; display: none; }
+.dots-menu ul li { line-height: 1.5; width: 100%; padding: 3px 7px; margin: 0; position: relative; border-left: 1px solid #cbcbcb; border-right: 1px solid #cbcbcb; background-color: #fff; }
+.dots-menu ul li:first-child { padding-top: 7px; border-top: 1px solid #cbcbcb; }
+.dots-menu ul li:last-child { padding-bottom: 7px; border-bottom: 1px solid #cbcbcb; }
+.dots-menu ul li .nav-link { display: block; width: 100%; padding: 12px 18px; background-color: #fff; color: #777; text-decoration: none; transition: background-color 300ms; }
+.dots-menu ul li:hover > .nav-link { background-color: #e9e9e9; color: #585858; }
+.dots-menu ul ul { left: 100%; top: -7px; margin: 0; }
+
+/* arrow */
+.dots-menu > .nav-item.nav-item-parent > .nav-link:before,
+.dots-menu > .nav-item.nav-item-parent > .nav-link:after { content: ''; width: 0; height: 0; border-style: solid; border-width: 7px 7px 0 7px; border-color: #fff transparent transparent transparent; position: absolute; left: 50%; bottom: 0; margin-left: -7px; }
+.dots-menu > .nav-item.nav-item-parent:hover > .nav-link:before { border-color: #cbcbcb transparent transparent transparent; bottom: -7px; }
+.dots-menu > .nav-item.nav-item-parent > .nav-link:after { border-color: #2f49b5 transparent transparent transparent; bottom: -7px; margin-left: -7px; display: none; }
+.dots-menu > .nav-item.nav-item-parent:not(.active):hover > .nav-link:after { border-color: #eee transparent transparent transparent; bottom: -6px; }
+
+.dots-menu ul .nav-item.nav-item-parent > .nav-link:before { content: ''; display: block; width: 0; height: 0; border-style: solid; border-width: 7px 0 7px 7px;  border-color: transparent transparent transparent #e9e9e9; position: absolute; right: 7px; top: 50%; margin: -7px 0 0 0; transition: right 300ms; }
+.dots-menu ul .nav-item.nav-item-parent:hover > .nav-link:before { right: 0; }
+.dots-menu ul .nav-item.nav-item-parent:hover:before,
+.dots-menu ul .nav-item.nav-item-parent:hover:after { content: ''; display: block; width: 0; height: 0; border-style: solid; border-width: 8px 0 8px 8px;  border-color: transparent transparent transparent #cbcbcb; position: absolute; right: -8px; top: 50%; margin: -8px 0 0 0; z-index: 502; }
+.dots-menu ul .nav-item.nav-item-parent:hover:after { border-color: transparent transparent transparent #fff; right: -7px; z-index: 503; }
+.dots-menu ul .nav-item.nav-item-parent:hover:before {  }
+
+/* drop-right */
+.dots-menu .nav-item.drop-right ul { right: 0; left: auto; }
+.dots-menu .nav-item.drop-right ul ul { right: 100%; left: auto; }
+.dots-menu .nav-item.drop-right ul .nav-item.nav-item-parent > .nav-link:before { right: auto; left: 7px; border-width: 7px 7px 7px 0;  border-color: transparent #e9e9e9 transparent transparent; transition: left 300ms; }
+.dots-menu .nav-item.drop-right ul .nav-item.nav-item-parent:hover > .nav-link:before { left: 0; }
+.dots-menu .nav-item.drop-right ul .nav-item.nav-item-parent:hover:before { border-width: 7px 7px 7px 0; border-color: transparent #cbcbcb transparent transparent; left: -8px; }
+.dots-menu .nav-item.drop-right ul .nav-item.nav-item-parent:hover:after { border-width: 7px 7px 7px 0; border-color: transparent #fff transparent transparent; left: -7px; }
+
+/* nav-item-right-drop */
+.dots-menu.nav-item-right-drop { position: absolute; right: 0; top: 0; width: 50px; height: 100%; background-color: #f4f4f4; transition: background-color 300ms; }
+.dots-menu.nav-item-right-drop:hover { background-color: #eee; }
+.dots-menu.nav-item-right-drop > .nav-item { position: absolute; right: 0; top: 0; width: 50px; height: 100%; cursor: pointer; background-color: transparent; }
+.dots-menu.nav-item-right-drop:hover > .nav-item:before,
+.dots-menu.nav-item-right-drop:hover > .nav-item:after { content: ''; width: 0; height: 0; border-style: solid; border-width: 7px 7px 0 7px; border-color: #cbcbcb transparent transparent transparent; position: absolute; left: 50%; bottom: -7px; margin-left: -7px; pointer-events: none; }
+.dots-menu.nav-item-right-drop:hover > .nav-item:after { border-color: #eee transparent transparent transparent; bottom: -6px; }
+.dots-menu.nav-item-right-drop:before,
+.dots-menu.nav-item-right-drop:after,
+.dots-menu.nav-item-right-drop > li:first-child { content: ''; display: block; width: 6px; height: 6px; border-radius: 50%; background-color: #cacaca; position: absolute; top: 50%; margin: -3px 0 0 -3px; pointer-events: none; }
+.dots-menu.nav-item-right-drop:hover:before,
+.dots-menu.nav-item-right-drop:hover:after,
+.dots-menu.nav-item-right-drop:hover > li:first-child { background-color: #b4b4b4; }
+.dots-menu.nav-item-right-drop > li:first-child { left: 50%; }
+.dots-menu.nav-item-right-drop:before { left: 30%; }
+.dots-menu.nav-item-right-drop:after { left: 70%; }
+
+/* active */
+.dots-menu > .nav-item.active > .nav-link { background-color: #e9e9e9; color: #000; padding-bottom: 9px; border-bottom: 7px solid #2f49b5; }
+.dots-menu > .nav-item.nav-item-parent.active:hover > .nav-link:before { bottom: 2px; }
+.dots-menu > .nav-item.nav-item-parent.active > .nav-link { border-bottom-color: #2f49b5; }
+.dots-menu > .nav-item.nav-item-parent.active > .nav-link:before { border-top-color: #e9e9e9; }
+.dots-menu > .nav-item.nav-item-parent:hover > .nav-link:after { display: block; }
+
