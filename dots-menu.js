@@ -1,8 +1,8 @@
 /**
- * DotsMenu
- * @author Andchir<andchir@gmail.com>
- * @param options
- * @constructor
+ * DotsMenu https://github.com/andchir/dots-menu
+ * @version 1.0.0
+ * @author Andchir <andchir@gmail.com>
+ * @license: MIT
  */
 (function (factory) {
 
