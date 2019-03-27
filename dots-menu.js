@@ -31,8 +31,10 @@
         var self = this;
 
         this.isInitialized = false;
+
         var mainOptions = {
-            dotsMenuButtonWidth: 50
+            dotsMenuButtonWidth: 50,
+            mobileViewWindowWidth: 576
         };
 
         /**
@@ -106,6 +108,10 @@
                 dotsMenu = menuParentContainer.querySelector('.nav-item-right-drop');
                 dotsMenuDrop = dotsMenu.querySelector('.nav-item > ul');
                 dotsMenuDrop.innerHTML = '';
+
+                if (windowWidth <= mainOptions.mobileViewWindowWidth) {
+                    return;
+                }
 
                 liFirstlevelArr = Array.prototype.slice.call(menuEl.childNodes);
                 liFirstlevelArr = liFirstlevelArr.filter(function (el) {
