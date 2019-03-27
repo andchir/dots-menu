@@ -105,6 +105,7 @@
                 menuParentContainer = menuEl.parentNode;
                 dotsMenu = menuParentContainer.querySelector('.nav-item-right-drop');
                 dotsMenuDrop = dotsMenu.querySelector('.nav-item > ul');
+                dotsMenuDrop.innerHTML = '';
 
                 liFirstlevelArr = Array.prototype.slice.call(menuEl.childNodes);
                 liFirstlevelArr = liFirstlevelArr.filter(function (el) {
@@ -120,17 +121,17 @@
                         return;
                     }
                     if (posLeft + elRect.width + mainOptions.dotsMenuButtonWidth > windowWidth) {
-                        liEl.classList.add('hidden');
+                        liEl.classList.add('nav-item-hidden');
                         if (!document.getElementById('drop-menu-item-' + index)) {
                             self.append(dotsMenuDrop, self.createElement('li', {
                                 id: 'drop-menu-item-' + index,
                                 className: 'nav-item',
                                 innerHTML: liEl.innerHTML
-                            }), self.isInitialized);
+                            }));
                         }
                         dropCount++;
                     } else {
-                        liEl.classList.remove('hidden');
+                        liEl.classList.remove('nav-item-hidden');
                         var dropItem = document.getElementById('drop-menu-item-' + index);
                         if (dropItem) {
                             self.removeEl(dropItem);
