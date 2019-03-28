@@ -1,6 +1,6 @@
 /**
  * DotsMenu https://github.com/andchir/dots-menu
- * @version 1.0.0
+ * @version 1.0.0beta
  * @author Andchir <andchir@gmail.com>
  * @license: MIT
  */
