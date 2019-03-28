@@ -92,11 +92,16 @@
                         liEl.querySelector('a').addEventListener('click', function(e) {
                             var dropMenu = e.target.parentNode.querySelector('ul'),
                                 clientX = e.clientX,
-                                elRect = e.target.getBoundingClientRect();
+                                elRect = e.target.getBoundingClientRect(),
+                                windowWidth = window.innerWidth;
 
-                            if (!dropMenu || clientX + 50 < elRect.width) {
-                                return;
+                            if (!dropMenu
+                                || windowWidth > mainOptions.mobileViewWindowWidth
+                                || clientX < elRect.width - 50) {
+                                    return;
                             }
+                            console.log('OPEN');
+                            e.preventDefault();
                             dropMenu.classList.toggle('nav-item-visible');
                         });
                     }
@@ -125,10 +130,6 @@
                 dotsMenu = menuParentContainer.querySelector('.nav-item-right-drop');
                 dotsMenuDrop = dotsMenu.querySelector('.nav-item > ul');
                 dotsMenuDrop.innerHTML = '';
-
-                if (windowWidth <= mainOptions.mobileViewWindowWidth) {
-                    //return;
-                }
 
                 liFirstlevelArr = Array.prototype.slice.call(menuEl.childNodes);
                 liFirstlevelArr = liFirstlevelArr.filter(function (el) {
