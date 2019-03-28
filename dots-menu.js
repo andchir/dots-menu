@@ -43,8 +43,8 @@
         this.init = function () {
             this.extend(mainOptions, options);
             this.onReady(function() {
-                self.dotsDropDownInit();
                 self.addMenuClasses();
+                self.dotsDropDownInit();
                 self.addMenuLastChildClasses();
                 self.onResize();
                 self.isInitialized = true;
@@ -59,13 +59,14 @@
             var menuParentContainer, dotsMenu, dotsMenuDrop, menuArr = document.querySelectorAll('.dots-menu');
             menuArr.forEach(function(menuEl) {
                 menuParentContainer = menuEl.parentNode;
+                // Add drop-menu
                 dotsMenu = self.createElement('ul', {
                     className: 'dots-menu nav-item-right-drop',
                     innerHTML: '<li></li>'
                 });
                 dotsMenuDrop = self.append(dotsMenu, self.createElement('li', {
                     className: 'nav-item drop-right',
-                    innerHTML: '<ul></ul>'
+                    innerHTML: '<span class="nav-link"></span><ul></ul>'
                 }));
                 self.append(menuParentContainer, dotsMenu);
             });
@@ -83,6 +84,21 @@
                 parent.querySelectorAll('li.nav-item').forEach(function(liEl) {
                     if (liEl.querySelectorAll('ul').length > 0) {
                         liEl.classList.add('nav-item-parent');
+
+                        if (liEl.parentNode.classList.contains('dots-menu')) {
+                            return;
+                        }
+
+                        liEl.querySelector('a').addEventListener('click', function(e) {
+                            var dropMenu = e.target.parentNode.querySelector('ul'),
+                                clientX = e.clientX,
+                                elRect = e.target.getBoundingClientRect();
+
+                            if (!dropMenu || clientX + 50 < elRect.width) {
+                                return;
+                            }
+                            dropMenu.classList.toggle('nav-item-visible');
+                        });
                     }
                 });
             });
@@ -100,17 +116,18 @@
          * On window resize
          */
         this.onResize = function () {
-            var elRect, liFirstlevelArr, menuParentContainer, dotsMenu, dotsMenuDrop,
+            var elRect, liFirstlevelArr, menuParentContainer, dotsMenu, dotsMenuDrop, menuRect,
                 windowWidth = window.innerWidth,
                 menuArr = document.querySelectorAll('.dots-menu:not(.nav-item-right-drop)');
             menuArr.forEach(function(menuEl) {
+                menuRect = menuEl.getBoundingClientRect();
                 menuParentContainer = menuEl.parentNode;
                 dotsMenu = menuParentContainer.querySelector('.nav-item-right-drop');
                 dotsMenuDrop = dotsMenu.querySelector('.nav-item > ul');
                 dotsMenuDrop.innerHTML = '';
 
                 if (windowWidth <= mainOptions.mobileViewWindowWidth) {
-                    return;
+                    //return;
                 }
 
                 liFirstlevelArr = Array.prototype.slice.call(menuEl.childNodes);
@@ -126,7 +143,7 @@
                         posLeft += elRect.width;
                         return;
                     }
-                    if (posLeft + elRect.width + mainOptions.dotsMenuButtonWidth > windowWidth) {
+                    if (posLeft + elRect.width + mainOptions.dotsMenuButtonWidth > menuRect.left + menuRect.width) {
                         liEl.classList.add('nav-item-hidden');
                         if (!document.getElementById('drop-menu-item-' + index)) {
                             self.append(dotsMenuDrop, self.createElement('li', {
