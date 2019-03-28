@@ -4,6 +4,11 @@ DotsMenu
 - Latest version: 1.0.0beta
 - Licence: MIT
 
+Demo
+----
+
+[http://wdevblog.net.ru/dots-menu/](http://wdevblog.net.ru/dots-menu/)
+
 Screenshots
 -----------
 
