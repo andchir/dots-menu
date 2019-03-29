@@ -112,6 +112,9 @@
          * Add class "drop-right" to last menu item
          */
         this.addMenuLastChildClasses = function () {
+            if (!document.querySelector('.dots-menu:not(.nav-item-right-drop)')) {
+                return;
+            }
             document.querySelector('.dots-menu:not(.nav-item-right-drop) > li.nav-item:last-child')
                 .classList.add('drop-right');
         };
