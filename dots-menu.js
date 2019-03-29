@@ -1,6 +1,6 @@
 /**
  * DotsMenu https://github.com/andchir/dots-menu
- * @version 1.0.0beta
+ * @version 1.0.0
  * @author Andchir <andchir@gmail.com>
  * @license: MIT
  */
@@ -100,9 +100,8 @@
                                 || clientX < elRect.width - 50) {
                                     return;
                             }
-                            console.log('OPEN');
                             e.preventDefault();
-                            dropMenu.classList.toggle('nav-item-visible');
+                            e.target.parentNode.classList.toggle('nav-item-parent-visible');
                         });
                     }
                 });
@@ -122,7 +121,6 @@
          */
         this.onResize = function () {
             var elRect, liFirstlevelArr, menuParentContainer, dotsMenu, dotsMenuDrop, menuRect,
-                windowWidth = window.innerWidth,
                 menuArr = document.querySelectorAll('.dots-menu:not(.nav-item-right-drop)');
             menuArr.forEach(function(menuEl) {
                 menuRect = menuEl.getBoundingClientRect();
@@ -149,7 +147,7 @@
                         if (!document.getElementById('drop-menu-item-' + index)) {
                             self.append(dotsMenuDrop, self.createElement('li', {
                                 id: 'drop-menu-item-' + index,
-                                className: 'nav-item',
+                                className: liEl.className.replace('nav-item-hidden', ''),
                                 innerHTML: liEl.innerHTML
                             }));
                         }
