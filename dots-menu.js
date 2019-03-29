@@ -1,6 +1,6 @@
 /**
  * DotsMenu https://github.com/andchir/dots-menu
- * @version 1.0.0
+ * @version 1.0.1
  * @author Andchir <andchir@gmail.com>
  * @license: MIT
  */
@@ -34,7 +34,8 @@
 
         var mainOptions = {
             dotsMenuButtonWidth: 50,
-            mobileViewWindowWidth: 576
+            mobileViewWindowWidth: 576,
+            dotsMenuButtonPosition: 'right'
         };
 
         /**
@@ -43,9 +44,9 @@
         this.init = function () {
             this.extend(mainOptions, options);
             this.onReady(function() {
-                self.addMenuClasses();
+                self.updateMenuParentClass();
                 self.dotsDropDownInit();
-                self.addMenuLastChildClasses();
+                /*self.addMenuLastChildClasses();*/
                 self.onResize();
                 self.isInitialized = true;
             });
@@ -56,19 +57,19 @@
          * Initialize dots drop down menu
          */
         this.dotsDropDownInit = function () {
-            var menuParentContainer, dotsMenu, dotsMenuDrop, menuArr = document.querySelectorAll('.dots-menu');
+            var menuParentContainer, dotsMenu, menuArr = document.querySelectorAll('.dots-menu');
             menuArr.forEach(function(menuEl) {
                 menuParentContainer = menuEl.parentNode;
                 // Add drop-menu
                 dotsMenu = self.createElement('ul', {
-                    className: 'dots-menu nav-item-right-drop',
+                    className: 'dots-menu dots-menu-drop dots-menu-drop-' + mainOptions.dotsMenuButtonPosition,
                     innerHTML: '<li></li>'
                 });
-                dotsMenuDrop = self.append(dotsMenu, self.createElement('li', {
-                    className: 'nav-item drop-right',
+                self.append(dotsMenu, self.createElement('li', {
+                    className: 'nav-item' + (mainOptions.dotsMenuButtonPosition === 'right' ? ' drop-right' : ''),
                     innerHTML: '<span class="nav-link"></span><ul></ul>'
                 }));
-                self.append(menuParentContainer, dotsMenu);
+                self.append(menuParentContainer, dotsMenu, (mainOptions.dotsMenuButtonPosition === 'left'));
             });
         };
 
@@ -76,25 +77,22 @@
          * Add special CSS classes to menu
          * @param parents
          */
-        this.addMenuClasses = function (parents) {
+        this.updateMenuParentClass = function (parents) {
             if (!parents) {
                 parents = document.querySelectorAll('.dots-menu');
             }
             parents.forEach(function(parent) {
                 parent.querySelectorAll('li.nav-item').forEach(function(liEl) {
-                    if (liEl.querySelectorAll('ul').length > 0) {
+                    if (liEl.querySelectorAll('ul').length > 0 && liEl.className.indexOf('nav-item-parent') === -1) {
                         liEl.classList.add('nav-item-parent');
-
                         if (liEl.parentNode.classList.contains('dots-menu')) {
                             return;
                         }
-
                         liEl.querySelector('a').addEventListener('click', function(e) {
                             var dropMenu = e.target.parentNode.querySelector('ul'),
                                 clientX = e.clientX,
                                 elRect = e.target.getBoundingClientRect(),
                                 windowWidth = window.innerWidth;
-
                             if (!dropMenu
                                 || windowWidth > mainOptions.mobileViewWindowWidth
                                 || clientX < elRect.width - 50) {
@@ -109,26 +107,15 @@
         };
 
         /**
-         * Add class "drop-right" to last menu item
-         */
-        this.addMenuLastChildClasses = function () {
-            if (!document.querySelector('.dots-menu:not(.nav-item-right-drop)')) {
-                return;
-            }
-            document.querySelector('.dots-menu:not(.nav-item-right-drop) > li.nav-item:last-child')
-                .classList.add('drop-right');
-        };
-
-        /**
          * On window resize
          */
         this.onResize = function () {
             var elRect, liFirstlevelArr, menuParentContainer, dotsMenu, dotsMenuDrop, menuRect,
-                menuArr = document.querySelectorAll('.dots-menu:not(.nav-item-right-drop)');
+                menuArr = document.querySelectorAll('.dots-menu:not(.dots-menu-drop)');
             menuArr.forEach(function(menuEl) {
                 menuRect = menuEl.getBoundingClientRect();
                 menuParentContainer = menuEl.parentNode;
-                dotsMenu = menuParentContainer.querySelector('.nav-item-right-drop');
+                dotsMenu = menuParentContainer.querySelector('.dots-menu-drop');
                 dotsMenuDrop = dotsMenu.querySelector('.nav-item > ul');
                 dotsMenuDrop.innerHTML = '';
 
@@ -137,35 +124,46 @@
                     return el.tagName && el.tagName.toLowerCase() === 'li';
                 });
 
-                var posLeft = 0, dropCount = 0;
+                var posLeft = 0, dropCount = 0, visibleNumber = 0;
                 liFirstlevelArr.forEach(function(liEl, index) {
                     elRect = liEl.getBoundingClientRect();
                     if (index === 0) {
                         posLeft = elRect.left;
                         posLeft += elRect.width;
+                        visibleNumber++;
                         return;
                     }
                     if (posLeft + elRect.width + mainOptions.dotsMenuButtonWidth > menuRect.left + menuRect.width) {
                         liEl.classList.add('nav-item-hidden');
                         if (!document.getElementById('drop-menu-item-' + index)) {
-                            self.append(dotsMenuDrop, self.createElement('li', {
+                            var dropLi = self.append(dotsMenuDrop, self.createElement('li', {
                                 id: 'drop-menu-item-' + index,
-                                className: liEl.className.replace('nav-item-hidden', ''),
+                                className: liEl.className,
                                 innerHTML: liEl.innerHTML
                             }));
+                            dropLi.classList.remove('nav-item-hidden');
+                            dropLi.classList.remove('nav-item-parent');
+                            dropLi.querySelectorAll('li.nav-item').forEach(function(el) {
+                                el.classList.remove('nav-item-parent');
+                            });
                         }
                         dropCount++;
                     } else {
+                        visibleNumber++;
                         liEl.classList.remove('nav-item-hidden');
                         var dropItem = document.getElementById('drop-menu-item-' + index);
                         if (dropItem) {
                             self.removeEl(dropItem);
                         }
                     }
+                    liEl.classList.remove('drop-right');
                     posLeft += elRect.width;
                 });
+
+                liFirstlevelArr[visibleNumber - 1].classList.add('drop-right');
+
                 if (dropCount > 0) {
-                    self.addMenuClasses([dotsMenu]);
+                    self.updateMenuParentClass([dotsMenu]);
                     dotsMenu.style.display ='block';
                 } else {
                     dotsMenu.style.display ='none';
