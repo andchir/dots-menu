@@ -1,6 +1,6 @@
 /**
  * DotsMenu https://github.com/andchir/dots-menu
- * @version 1.0.1
+ * @version 1.0.2
  * @author Andchir <andchir@gmail.com>
  * @license: MIT
  */
@@ -35,7 +35,8 @@
         var mainOptions = {
             dotsMenuButtonWidth: 50,
             mobileViewWindowWidth: 576,
-            dotsMenuButtonPosition: 'right'
+            dotsMenuButtonPosition: 'right',
+            selector: '.dots-menu'
         };
 
         /**
@@ -46,7 +47,6 @@
             this.onReady(function() {
                 self.updateMenuParentClass();
                 self.dotsDropDownInit();
-                /*self.addMenuLastChildClasses();*/
                 self.onResize();
                 self.isInitialized = true;
             });
@@ -57,7 +57,7 @@
          * Initialize dots drop down menu
          */
         this.dotsDropDownInit = function () {
-            var menuParentContainer, dotsMenu, menuArr = document.querySelectorAll('.dots-menu');
+            var menuParentContainer, dotsMenu, menuArr = document.querySelectorAll(mainOptions.selector);
             menuArr.forEach(function(menuEl) {
                 menuParentContainer = menuEl.parentNode;
                 // Add drop-menu
@@ -79,7 +79,7 @@
          */
         this.updateMenuParentClass = function (parents) {
             if (!parents) {
-                parents = document.querySelectorAll('.dots-menu');
+                parents = document.querySelectorAll(mainOptions.selector);
             }
             parents.forEach(function(parent) {
                 parent.querySelectorAll('li.nav-item').forEach(function(liEl) {
@@ -111,7 +111,7 @@
          */
         this.onResize = function () {
             var elRect, liFirstlevelArr, menuParentContainer, dotsMenu, dotsMenuDrop, menuRect,
-                menuArr = document.querySelectorAll('.dots-menu:not(.dots-menu-drop)');
+                menuArr = document.querySelectorAll(mainOptions.selector+':not(.dots-menu-drop)');
             menuArr.forEach(function(menuEl) {
                 menuRect = menuEl.getBoundingClientRect();
                 menuParentContainer = menuEl.parentNode;
@@ -266,16 +266,6 @@
                 }
             });
             return element;
-        };
-
-        /**
-         * Insert child element after another one
-         * @param refElem
-         * @param elem
-         * @returns {Node}
-         */
-        this.insertAfter = function (refElem, elem) {
-            return refElem.parentNode.insertBefore(elem, refElem.nextSibling);
         };
 
         /**

@@ -1,7 +1,7 @@
 DotsMenu
 ========
 
-- Latest version: 1.0.1
+- Latest version: 1.0.2
 - Licence: MIT
 
 Demo
@@ -15,7 +15,6 @@ Screenshots
 ![DropMenu - screenshot #1](https://raw.githubusercontent.com/andchir/dots-menu/master/screenshots/screenshot01.png?raw=true "DropMenu - screenshot #1")
 
 ![DropMenu - screenshot #2](https://raw.githubusercontent.com/andchir/dots-menu/master/screenshots/screenshot02.png?raw=true "DropMenu - screenshot #2")
-
 
 Usage
 -----
@@ -66,4 +65,22 @@ Class "dots-menu-fluid" for full width:
 </div>
 ~~~
 
+Options
+-------
 
+- **dotsMenuButtonWidth** - The width of the drop-down button. Default: 50.
+- **mobileViewWindowWidth** - The width of the window for the mobile menu view. Default: 576.
+- **dotsMenuButtonPosition** - The position of the button drop-down menu. Default: 'right'.
+- **selector** - Menu selector. Default: '.dots-menu'.
+
+Example with options:
+~~~
+<script>
+    var dotsMenu = new DotsMenu({
+        dotsMenuButtonWidth: 50,
+        mobileViewWindowWidth: 576,
+        dotsMenuButtonPosition: 'right',
+        selector: '.dots-menu'
+    });
+</script>
+~~~

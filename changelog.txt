@@ -2,6 +2,10 @@
 Changelog
 ---------
 
+1.0.2
+- Updated styles.
+- Added option "selector".
+
 1.0.1
-- Add parameter "dotsMenuButtonPosition".
+- Added option "dotsMenuButtonPosition".
 
