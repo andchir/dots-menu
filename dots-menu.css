@@ -1,6 +1,6 @@
 
 /* dots-menu */
-.dots-menu-container { height: 50px; position: relative; background-color: #fff; border-bottom: 1px solid #cbcbcb; }
+.dots-menu-container { height: 50px; position: relative; background-color: #fff; border-bottom: 1px solid #cbcbcb; overflow: hidden; }
 .dots-menu-container:after { content: ''; display: block; clear: both; }
 .dots-menu-container * { box-sizing: border-box; }
 .dots-menu { width: 960px; max-width: 100%; min-height: 50px; list-style-type: none; padding: 0; margin: 0 auto; box-sizing: border-box; }

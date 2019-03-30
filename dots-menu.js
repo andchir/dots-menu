@@ -60,6 +60,7 @@
             var menuParentContainer, dotsMenu, menuArr = document.querySelectorAll(mainOptions.selector);
             menuArr.forEach(function(menuEl) {
                 menuParentContainer = menuEl.parentNode;
+                menuParentContainer.style.overflow = 'visible';
                 // Add drop-menu
                 dotsMenu = self.createElement('ul', {
                     className: 'dots-menu dots-menu-drop dots-menu-drop-' + mainOptions.dotsMenuButtonPosition,
