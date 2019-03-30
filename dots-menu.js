@@ -130,6 +130,7 @@
                     if (index === 0) {
                         posLeft = elRect.left;
                         posLeft += elRect.width;
+                        liEl.classList.remove('drop-right');
                         visibleNumber++;
                         return;
                     }
