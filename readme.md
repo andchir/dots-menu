@@ -68,10 +68,10 @@ Class "dots-menu-fluid" for full width:
 Options
 -------
 
-- **dotsMenuButtonWidth** - The width of the drop-down button. Default: 50.
-- **mobileViewWindowWidth** - The width of the window for the mobile menu view. Default: 576.
-- **dotsMenuButtonPosition** - The position of the button drop-down menu. Default: 'right'.
-- **selector** - Menu selector. Default: '.dots-menu'.
+- **dotsMenuButtonWidth** - The width of the drop-down button. _Default: 50_.
+- **mobileViewWindowWidth** - The width of the window for the mobile menu view. _Default: 576_.
+- **dotsMenuButtonPosition** - The position of the button drop-down menu. _Default: 'right'_.
+- **selector** - Menu selector. _Default: '.dots-menu'_.
 
 Example with options:
 ~~~
