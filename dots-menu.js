@@ -1,6 +1,6 @@
 /**
  * DotsMenu https://github.com/andchir/dots-menu
- * @version 1.0.2
+ * @version 1.0.3
  * @author Andchir <andchir@gmail.com>
  * @license: MIT
  */
@@ -162,7 +162,9 @@
                     posLeft += elRect.width;
                 });
 
-                liFirstlevelArr[visibleNumber - 1].classList.add('drop-right');
+                if (visibleNumber > 1) {
+                    liFirstlevelArr[visibleNumber - 1].classList.add('drop-right');
+                }
 
                 if (dropCount > 0) {
                     self.updateMenuParentClass([dotsMenu]);
