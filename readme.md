@@ -72,6 +72,7 @@ Options
 - **mobileViewWindowWidth** - The width of the window for the mobile menu view. _Default: 576_.
 - **dotsMenuButtonPosition** - The position of the button drop-down menu. _Default: 'right'_.
 - **selector** - Menu selector. _Default: '.dots-menu'_.
+- **rightSpace** - The empty space on the right in px. _Default: 0_.
 
 Example with options:
 ~~~

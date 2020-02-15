@@ -35,6 +35,7 @@
         var mainOptions = {
             dotsMenuButtonWidth: 50,
             mobileViewWindowWidth: 576,
+            rightSpace: 0,
             dotsMenuButtonPosition: 'right',
             selector: '.dots-menu'
         };
@@ -66,6 +67,9 @@
                     className: 'dots-menu dots-menu-drop dots-menu-drop-' + mainOptions.dotsMenuButtonPosition,
                     innerHTML: '<li></li>'
                 });
+                if (mainOptions.dotsMenuButtonPosition === 'right' && mainOptions.rightSpace) {
+                    dotsMenu.style.right = mainOptions.rightSpace + 'px';
+                }
                 self.append(dotsMenu, self.createElement('li', {
                     className: 'nav-item' + (mainOptions.dotsMenuButtonPosition === 'right' ? ' drop-right' : ''),
                     innerHTML: '<span class="nav-link"></span><ul></ul>'
@@ -164,7 +168,7 @@
                         visibleNumber++;
                         return;
                     }
-                    if (posLeft + elRect.width + mainOptions.dotsMenuButtonWidth > menuRect.left + menuRect.width) {
+                    if (posLeft + elRect.width + mainOptions.dotsMenuButtonWidth + mainOptions.rightSpace > menuRect.left + menuRect.width) {
                         liEl.classList.add('nav-item-hidden');
                         if (!document.getElementById('drop-menu-item-' + index)) {
                             var dropLi = self.append(dotsMenuDrop, self.createElement('li', {
