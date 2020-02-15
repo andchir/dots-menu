@@ -2,6 +2,12 @@
 Changelog
 ---------
 
+1.0.4
+- Open on click form mobiles fix.
+
+1.0.3
+- Styles update
+
 1.0.2
 - Updated styles.
 - Added option "selector".

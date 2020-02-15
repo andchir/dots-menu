@@ -76,7 +76,7 @@
 
     .dots-menu { min-height: 0; }
     .dots-menu > .nav-item:not(.nav-item-hidden) { position: static; }
-    .dots-menu ul .nav-item:hover > ul { display: none; }
+    .dots-menu .nav-item:hover > ul { display: none; }
     .dots-menu ul { width: 100%; }
     .dots-menu ul li.active > .nav-link { background-color: #eee; color: #000; }
     .dots-menu ul li:hover > .nav-link { background-color: #e9e9e9; }

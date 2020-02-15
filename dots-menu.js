@@ -1,6 +1,6 @@
 /**
  * DotsMenu https://github.com/andchir/dots-menu
- * @version 1.0.3
+ * @version 1.0.4
  * @author Andchir <andchir@gmail.com>
  * @license: MIT
  */
@@ -71,6 +71,21 @@
                     innerHTML: '<span class="nav-link"></span><ul></ul>'
                 }));
                 self.append(menuParentContainer, dotsMenu, (mainOptions.dotsMenuButtonPosition === 'left'));
+                if (dotsMenu.querySelector('li > span.nav-link')) {
+                    dotsMenu.querySelector('li > span.nav-link').addEventListener('click', function(e) {
+                        e.preventDefault();
+                        
+                        // Close other
+                        var parents = document.querySelectorAll(mainOptions.selector + ':not(.dots-menu-drop)');
+                        parents.forEach(function(parent) {
+                            parent.querySelectorAll('.nav-item-parent.nav-item-parent-visible').forEach(function (liEl) {
+                                liEl.classList.remove('nav-item-parent-visible');
+                            })
+                        });
+                        // Open drop-down menu
+                        e.target.parentNode.classList.toggle('nav-item-parent-visible');
+                    }, false);
+                }
             });
         };
 
@@ -80,27 +95,41 @@
          */
         this.updateMenuParentClass = function (parents) {
             if (!parents) {
-                parents = document.querySelectorAll(mainOptions.selector);
+                parents = Array.from(document.querySelectorAll(mainOptions.selector));
             }
             parents.forEach(function(parent) {
-                parent.querySelectorAll('li.nav-item').forEach(function(liEl) {
+                Array.from(parent.querySelectorAll('li.nav-item')).forEach(function(liEl) {
                     if (liEl.querySelectorAll('ul').length > 0 && liEl.className.indexOf('nav-item-parent') === -1) {
                         liEl.classList.add('nav-item-parent');
-                        if (liEl.parentNode.classList.contains('dots-menu')) {
-                            return;
-                        }
                         liEl.querySelector('a').addEventListener('click', function(e) {
-                            var dropMenu = e.target.parentNode.querySelector('ul'),
+                            if (!liEl.classList.contains('nav-item-parent')) {
+                                return;
+                            }
+                            var currentLiEl = e.target.parentNode,
+                                dropMenu = currentLiEl.querySelector('ul'),
                                 clientX = e.clientX,
                                 elRect = e.target.getBoundingClientRect(),
                                 windowWidth = window.innerWidth;
                             if (!dropMenu
                                 || windowWidth > mainOptions.mobileViewWindowWidth
-                                || clientX < elRect.width - 50) {
+                                || (liEl.parentNode !== parent && clientX < elRect.width - 50)) {
                                     return;
                             }
                             e.preventDefault();
-                            e.target.parentNode.classList.toggle('nav-item-parent-visible');
+                            
+                            if (liEl.parentNode === parent) {
+                                // Close other
+                                var prnts = Array.from(document.querySelectorAll(mainOptions.selector));
+                                prnts.forEach(function(prnt) {
+                                    prnt.querySelectorAll('li.nav-item-parent').forEach(function(el) {
+                                        if (el !== currentLiEl) {
+                                            el.classList.remove('nav-item-parent-visible');
+                                        }
+                                    });
+                                });
+                            }
+                            // Open drop-down menu
+                            currentLiEl.classList.toggle('nav-item-parent-visible');
                         });
                     }
                 });
