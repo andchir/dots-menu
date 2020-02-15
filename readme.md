@@ -1,7 +1,7 @@
 DotsMenu
 ========
 
-- Latest version: 1.0.3
+- Latest version: 1.0.4
 - Licence: MIT
 
 Demo
