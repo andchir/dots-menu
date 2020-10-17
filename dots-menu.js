@@ -146,6 +146,7 @@
         this.onResize = function () {
             var elRect, liFirstlevelArr, menuParentContainer, dotsMenu, dotsMenuDrop, menuRect,
                 menuArr = document.querySelectorAll(mainOptions.selector+':not(.dots-menu-drop)');
+            
             menuArr.forEach(function(menuEl) {
                 menuRect = menuEl.getBoundingClientRect();
                 menuParentContainer = menuEl.parentNode;
