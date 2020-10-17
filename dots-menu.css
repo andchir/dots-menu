@@ -89,6 +89,7 @@
     .dots-menu ul .nav-item.nav-item-parent:hover > :after { left: auto; right: 18px; bottom: auto; top: 50%; }
     .dots-menu ul .nav-item.nav-item-parent:hover:before,
     .dots-menu ul .nav-item.nav-item-parent:hover:after { display: none; }
+    .dots-menu ul .nav-item.nav-item-parent.active > .nav-link:before { right: 9px; }
 
     .dots-menu ul .nav-item.nav-item-parent.nav-item-parent-visible > .nav-link:after { margin-top: 0; border-top-color: #a9a9a9; }
 
