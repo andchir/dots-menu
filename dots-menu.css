@@ -20,7 +20,7 @@
 .dots-menu ul li:last-child { padding-bottom: 7px; border-bottom: 1px solid #cbcbcb; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; }
 .dots-menu ul li .nav-link { display: block; width: 100%; padding: 8px 16px; border-radius: 14px; background-color: #fff; color: #777; text-decoration: none; transition: background-color 300ms; }
 .dots-menu ul li:hover > .nav-link { background-color: #e9e9e9; color: #585858; }
-.dots-menu ul li.active > .nav-link { background-color: #eee; color: #000; }
+.dots-menu ul li.active > .nav-link { background-color: #e9e9e9; color: #000; }
 .dots-menu ul ul { left: 100%; top: -7px; margin: 0; }
 
 /* arrow */
@@ -34,6 +34,7 @@
 .dots-menu > .nav-item.nav-item-parent.active > .nav-link:before { border-color: #ffffff transparent transparent transparent; }
 
 .dots-menu ul .nav-item.nav-item-parent > .nav-link:before { content: ''; display: block; width: 0; height: 0; border-style: solid; border-width: 7px 0 7px 7px;  border-color: transparent transparent transparent #e9e9e9; position: absolute; right: 7px; top: 50%; margin: -7px 0 0 0; transition: right 300ms; }
+.dots-menu ul .nav-item.nav-item-parent.active > .nav-link:before { right: 2px; }
 .dots-menu ul .nav-item.nav-item-parent:hover > .nav-link:before { right: 0; }
 .dots-menu ul .nav-item.nav-item-parent:hover:before,
 .dots-menu ul .nav-item.nav-item-parent:hover:after { content: ''; display: block; width: 0; height: 0; border-style: solid; border-width: 8px 0 8px 8px;  border-color: transparent transparent transparent #cbcbcb; position: absolute; right: -8px; top: 50%; margin: -8px 0 0 0; z-index: 502; }
@@ -43,6 +44,7 @@
 .dots-menu .nav-item.drop-right ul { right: 0; left: auto; }
 .dots-menu .nav-item.drop-right ul ul { right: 100%; left: auto; }
 .dots-menu .nav-item.drop-right ul .nav-item.nav-item-parent > .nav-link:before { right: auto; left: 7px; border-width: 7px 7px 7px 0;  border-color: transparent #e9e9e9 transparent transparent; transition: left 300ms; }
+.dots-menu .nav-item.drop-right ul .nav-item.nav-item-parent.active > .nav-link:before { left: 2px; }
 .dots-menu .nav-item.drop-right ul .nav-item.nav-item-parent:hover > .nav-link:before { left: 0; }
 .dots-menu .nav-item.drop-right ul .nav-item.nav-item-parent:hover:before { border-width: 7px 7px 7px 0; border-color: transparent #cbcbcb transparent transparent; left: -8px; }
 .dots-menu .nav-item.drop-right ul .nav-item.nav-item-parent:hover:after { border-width: 7px 7px 7px 0; border-color: transparent #fff transparent transparent; left: -7px; }
