@@ -1,37 +1,37 @@
 
 /* dots-menu */
-.dots-menu-container { height: 50px; position: relative; background-color: #fff; border-bottom: 1px solid #cbcbcb; overflow: hidden; }
+.dots-menu-container { height: 50px; position: relative; background-color: #fff; overflow: hidden; }
 .dots-menu-container:after { content: ''; display: block; clear: both; }
 .dots-menu-container * { box-sizing: border-box; }
 .dots-menu { width: 960px; max-width: 100%; min-height: 50px; list-style-type: none; padding: 0; margin: 0 auto; box-sizing: border-box; }
 .dots-menu-fluid { max-width: 100%; width: 100%; }
-.dots-menu > .nav-item { display: block; float: left; padding: 0 1px; margin: 0; position: relative; }
-.dots-menu > .nav-item > .nav-link { height: 50px; line-height: 1.2; display: block; position: relative; padding: 16px 22px; text-decoration: none; color: #777; transition: background-color 300ms; }
-.dots-menu > .nav-item.nav-item-parent > .nav-link { padding-bottom: 9px; border-bottom: 7px solid #e9e9e9; }
+.dots-menu > .nav-item { display: block; float: left; padding: 7px 3px; margin: 0; position: relative; }
+.dots-menu > .nav-item > .nav-link { line-height: 1.2; display: block; position: relative; padding: 8px 16px; border-radius: 14px; text-decoration: none; color: #777; transition: background-color 300ms; }
+.dots-menu > .nav-item.nav-item-parent > .nav-link {  }
 .dots-menu > .nav-item:hover > .nav-link,
 .dots-menu > .nav-item:hover > .nav-link { background-color: #eee; border-color: #eee; color: #585858; }
 .dots-menu .nav-item:hover > ul { display: block; }
-.dots-menu > .nav-item.active > .nav-link { background-color: #e9e9e9; color: #000; padding-bottom: 9px; border-bottom: 7px solid #2f49b5; }
+.dots-menu > .nav-item.active > .nav-link { background-color: #3d7fd1; color: #fff; }
 .dots-menu .nav-item-hidden { position: fixed; top: -300px; left: -300px; }
 
 .dots-menu ul { width: 220px; position: absolute; left: 0; top: 100%; padding: 7px 0; margin: 0; list-style-type: none; z-index: 500; display: none; }
 .dots-menu ul li { line-height: 1.5; width: 100%; padding: 3px 7px; margin: 0; position: relative; border-left: 1px solid #cbcbcb; border-right: 1px solid #cbcbcb; background-color: #fff; }
-.dots-menu ul li:first-child { padding-top: 7px; border-top: 1px solid #cbcbcb; }
-.dots-menu ul li:last-child { padding-bottom: 7px; border-bottom: 1px solid #cbcbcb; }
-.dots-menu ul li .nav-link { display: block; width: 100%; padding: 12px 18px; background-color: #fff; color: #777; text-decoration: none; transition: background-color 300ms; }
+.dots-menu ul li:first-child { padding-top: 7px; border-top: 1px solid #cbcbcb; border-top-left-radius: 20px; border-top-right-radius: 20px; }
+.dots-menu ul li:last-child { padding-bottom: 7px; border-bottom: 1px solid #cbcbcb; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; }
+.dots-menu ul li .nav-link { display: block; width: 100%; padding: 8px 16px; border-radius: 14px; background-color: #fff; color: #777; text-decoration: none; transition: background-color 300ms; }
 .dots-menu ul li:hover > .nav-link { background-color: #e9e9e9; color: #585858; }
-.dots-menu ul li.active > .nav-link { color: #000; }
+.dots-menu ul li.active > .nav-link { background-color: #eee; color: #000; }
 .dots-menu ul ul { left: 100%; top: -7px; margin: 0; }
 
 /* arrow */
 .dots-menu > .nav-item.nav-item-parent > .nav-link:before,
-.dots-menu > .nav-item.nav-item-parent > .nav-link:after { content: ''; width: 0; height: 0; border-style: solid; border-width: 7px 7px 0 7px; border-color: #fff transparent transparent transparent; position: absolute; left: 50%; bottom: -7px; margin-left: -7px; transition: bottom 300ms, background-color 300ms; }
-.dots-menu > .nav-item.nav-item-parent:hover > .nav-link:before { bottom: -14px; border-color: #cbcbcb transparent transparent transparent; }
-.dots-menu > .nav-item.nav-item-parent:hover > .nav-link:after { bottom: -13px; border-color: #eee transparent transparent transparent; }
+.dots-menu > .nav-item.nav-item-parent > .nav-link:after { content: ''; width: 0; height: 0; border-style: solid; border-width: 7px 7px 0 7px; border-color: #eee transparent transparent transparent; position: absolute; left: 50%; bottom: -5px; margin-left: -7px; transition: bottom 300ms, background-color 300ms; }
+.dots-menu > .nav-item.nav-item-parent:hover > .nav-link:before { bottom: -14px; border-color: #fff transparent transparent transparent; }
+.dots-menu > .nav-item.nav-item-parent:hover > .nav-link:after { bottom: -7px; border-color: #eee transparent transparent transparent; }
 .dots-menu > .nav-item.nav-item-parent.active:hover > .nav-link:before { bottom: -14px; }
-.dots-menu > .nav-item.nav-item-parent.active:hover > .nav-link:after { bottom: -5px; }
-.dots-menu > .nav-item.nav-item-parent.active > .nav-link:after { border-color: #e9e9e9 transparent transparent transparent; }
-.dots-menu > .nav-item.nav-item-parent.active > .nav-link:before { border-color: #2f49b5 transparent transparent transparent; }
+.dots-menu > .nav-item.nav-item-parent.active:hover > .nav-link:after { bottom: -7px; }
+.dots-menu > .nav-item.nav-item-parent.active > .nav-link:after { border-color: #3d7fd1 transparent transparent transparent; }
+.dots-menu > .nav-item.nav-item-parent.active > .nav-link:before { border-color: #ffffff transparent transparent transparent; }
 
 .dots-menu ul .nav-item.nav-item-parent > .nav-link:before { content: ''; display: block; width: 0; height: 0; border-style: solid; border-width: 7px 0 7px 7px;  border-color: transparent transparent transparent #e9e9e9; position: absolute; right: 7px; top: 50%; margin: -7px 0 0 0; transition: right 300ms; }
 .dots-menu ul .nav-item.nav-item-parent:hover > .nav-link:before { right: 0; }
@@ -50,11 +50,12 @@
 /* dots-menu-drop */
 .dots-menu.dots-menu-drop { position: absolute; right: 0; top: 0; width: 50px; height: 50px; display: none; background-color: transparent; }
 .dots-menu.dots-menu-drop > .nav-item { position: absolute; right: 0; top: 0; width: 50px; height: 100%; cursor: pointer; background-color: transparent; }
-.dots-menu.dots-menu-drop > .nav-item > .nav-link { position: absolute; right: 0; top: 0; z-index: 500; border-bottom: 0; padding: 0; width: 50px; height: 100%; background-color: #eee; }
+.dots-menu.dots-menu-drop > .nav-item > .nav-link { position: absolute; right: 5px; top: 5px; z-index: 500; border-radius: 50%; padding: 0; width: 40px; height:40px; background-color: #eee; }
 .dots-menu.dots-menu-drop > .nav-item > .nav-link:before,
 .dots-menu.dots-menu-drop > .nav-item > .nav-link:after { display: none; }
-.dots-menu.dots-menu-drop:hover > .nav-item > .nav-link:before { bottom: -7px; display: block; }
-.dots-menu.dots-menu-drop:hover > .nav-item > .nav-link:after { bottom: -6px; display: block; }
+.dots-menu.dots-menu-drop:hover > .nav-item > .nav-link:before,
+.dots-menu.dots-menu-drop > .nav-item-parent-visible > .nav-link:before { border-color: #fff transparent transparent transparent; bottom: -12px; display: block; }
+.dots-menu.dots-menu-drop:hover > .nav-item > .nav-link:after { /*bottom: -6px; display: block;*/ }
 .dots-menu.dots-menu-drop:before,
 .dots-menu.dots-menu-drop:after,
 .dots-menu.dots-menu-drop > li:first-child { content: ''; display: block; width: 6px; height: 6px; border-radius: 50%; background-color: #cacaca; position: absolute; top: 50%; z-index: 501; margin: -3px 0 0 -3px; pointer-events: none; }
@@ -78,26 +79,26 @@
     .dots-menu > .nav-item:not(.nav-item-hidden) { position: static; }
     .dots-menu .nav-item:hover > ul { display: none; }
     .dots-menu ul { width: 100%; }
-    .dots-menu ul li.active > .nav-link { background-color: #eee; color: #000; }
+    .dots-menu ul li.active > .nav-link { /*background-color: #eee; color: #000;*/ }
     .dots-menu ul li:hover > .nav-link { background-color: #e9e9e9; }
     .dots-menu ul .nav-item.nav-item-parent > .nav-link { position: relative; padding: 12px 50px 12px 18px; }
-    .dots-menu ul .nav-item.nav-item-parent > .nav-link:before { content: ''; display: block; border: 0; width: 50px; height: 100%; padding: 0; position: absolute; left: auto; right: 0; bottom: auto; top: 7px; background-color: #cbcbcb; }
-    .dots-menu ul .nav-item.nav-item-parent > .nav-link:after { content: ''; display: block;  width: 0; height: 0; border-style: solid; border-width: 7px 7px 0 7px; border-color: #eee transparent transparent transparent; position: absolute; left: auto; right: 18px; bottom: auto; top: 50%; margin-top: -4px; transition: margin-top 300ms, border-top-color 300ms; }
-    .dots-menu ul .nav-item.nav-item-parent:hover > .nav-link:before { bottom: auto; top: 7px; }
+    .dots-menu ul .nav-item.nav-item-parent > .nav-link:before { content: ''; display: block; border: 0; width: 30px; height: 30px; border-radius: 50%; padding: 0; position: absolute; left: auto; right: 9px; bottom: auto; top: 50%; margin-top: -15px; background-color: #cbcbcb; }
+    .dots-menu ul .nav-item.nav-item-parent > .nav-link:after { content: ''; display: block;  width: 0; height: 0; border-style: solid; border-width: 7px 7px 0 7px; border-color: #eee transparent transparent transparent; position: absolute; left: auto; right: 18px; bottom: auto; top: 50%; margin-top: -2px; transition: margin-top 300ms, border-top-color 300ms; }
+    .dots-menu ul .nav-item.nav-item-parent:hover > .nav-link:before { left: auto; right: 9px; }
     .dots-menu ul .nav-item.nav-item-parent:hover > :after { left: auto; right: 18px; bottom: auto; top: 50%; }
     .dots-menu ul .nav-item.nav-item-parent:hover:before,
     .dots-menu ul .nav-item.nav-item-parent:hover:after { display: none; }
 
     .dots-menu ul .nav-item.nav-item-parent.nav-item-parent-visible > .nav-link:after { margin-top: 0; border-top-color: #a9a9a9; }
 
-    .dots-menu ul ul { position: static; }
+    .dots-menu ul ul { position: static; padding-bottom: 0; }
     .dots-menu.dots-menu-drop:not(.dots-menu-drop-left) { width: auto; height: auto; }
     .dots-menu.dots-menu-drop,
     .dots-menu.dots-menu-drop.dots-menu-drop-left { position: static; }
     .dots-menu.dots-menu-drop > .nav-item { position: static; }
     .dots-menu.dots-menu-drop > .nav-item ul { width: 100%; }
     .dots-menu .nav-item.drop-right ul .nav-item.nav-item-parent > .nav-link:before,
-    .dots-menu .nav-item.drop-right ul .nav-item.nav-item-parent:hover > .nav-link:before { left: auto; right: 0; bottom: auto; top: 7px; }
+    .dots-menu .nav-item.drop-right ul .nav-item.nav-item-parent:hover > .nav-link:before { left: auto; right: 9px; }
 
     .dots-menu .nav-item-visible { display: block !important; }
     .dots-menu .nav-item-parent-visible > ul { display: block !important; }
