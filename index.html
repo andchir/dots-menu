@@ -8,21 +8,21 @@
     <title>Dots Menu</title>
 
     <style>
-        body { padding: 0; margin: 0; background-color: #ddd; font-family: sans-serif; box-sizing: border-box; }
+        body { padding: 65px 0 0 0; margin: 0; background-color: #ddd; font-family: sans-serif; box-sizing: border-box; }
         .container { width: 960px; max-width: 100%; margin: 0 auto; padding: 0 15px; box-sizing: border-box; }
     </style>
 
     <link href="dots-menu.css?v=1.1.1" rel="stylesheet">
     <script src="dots-menu.js?v=1.1.1"></script>
     <script>
-        var dotsMenu = new DotsMenu();
+        var dotsMenu = new DotsMenu({fixedMode: true});
     </script>
 
 </head>
 <body>
 
 <header>
-    <div class="dots-menu-container">
+    <div class="dots-menu-container dots-menu-container-fixed">
         <ul class="dots-menu">
             <li class="nav-item">
                 <a href="#1" class="nav-link">
