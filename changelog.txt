@@ -3,7 +3,7 @@ Changelog
 ---------
 
 1.1.1
-- Scroll drop down menu on mobile devices.
+- Scroll drop down menu on mobile devices (fixedMode).
 
 1.1.0
 - New style with rounded borders.

@@ -73,6 +73,7 @@ Options
 - **dotsMenuButtonPosition** - The position of the button drop-down menu. _Default: 'right'_.
 - **selector** - Menu selector. _Default: '.dots-menu'_.
 - **rightSpace** - The empty space on the right in px. _Default: 0_.
+- **fixedMode** - The dropdown menu will scroll to fit the screen size of the mobile device. You can also use CSS class "dots-menu-container-fixed" for "dots-menu-container". _Default: false_.
 
 Example with options:
 ~~~
@@ -80,6 +81,7 @@ Example with options:
     var dotsMenu = new DotsMenu({
         dotsMenuButtonWidth: 50,
         mobileViewWindowWidth: 576,
+        fixedMode: false,
         dotsMenuButtonPosition: 'right',
         selector: '.dots-menu'
     });

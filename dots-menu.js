@@ -101,6 +101,9 @@
          * @param parent
          */
         this.updateDropHeight = function(dropMenuEl, parent) {
+            if (!mainOptions.fixedMode) {
+                return;
+            }
             var windowWidth = window.innerWidth;
             var windowHeight = window.innerHeight;
             var menuParentContainer = parent.parentNode;
