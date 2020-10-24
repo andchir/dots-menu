@@ -3,6 +3,7 @@
 .dots-menu-container { height: 50px; padding: 0 5px; position: relative; background-color: #fff; overflow: hidden; }
 .dots-menu-container:after { content: ''; display: block; clear: both; }
 .dots-menu-container * { box-sizing: border-box; }
+.dots-menu-container-fixed { position: fixed; width: 100%; top: 0; left: 0; }
 .dots-menu { width: 960px; max-width: 100%; min-height: 50px; list-style-type: none; padding: 0; margin: 0 auto; box-sizing: border-box; }
 .dots-menu-fluid { max-width: 100%; width: 100%; }
 .dots-menu > .nav-item { display: block; float: left; padding: 7px 3px; margin: 0; position: relative; }
@@ -51,7 +52,7 @@
 
 /* dots-menu-drop */
 .dots-menu.dots-menu-drop { position: absolute; right: 0; top: 0; width: 50px; height: 50px; display: none; background-color: transparent; }
-.dots-menu.dots-menu-drop > .nav-item { position: absolute; right: 0; top: 0; width: 50px; height: 100%; cursor: pointer; background-color: transparent; }
+.dots-menu.dots-menu-drop > .nav-item { position: absolute; right: 0; top: 0; width: 50px; height: 100%; background-color: transparent; }
 .dots-menu.dots-menu-drop > .nav-item > .nav-link { position: absolute; right: 5px; top: 5px; z-index: 500; border-radius: 50%; padding: 0; width: 40px; height:40px; background-color: #eee; }
 .dots-menu.dots-menu-drop > .nav-item > .nav-link:before,
 .dots-menu.dots-menu-drop > .nav-item > .nav-link:after { display: none; }
@@ -79,7 +80,7 @@
     .dots-menu { min-height: 0; }
     .dots-menu > .nav-item:not(.nav-item-hidden) { position: static; }
     .dots-menu .nav-item:hover > ul { display: none; }
-    .dots-menu > li > ul { padding: 7px; }
+    .dots-menu > li > ul { padding: 7px; overflow: hidden; overflow-y: auto; }
     .dots-menu ul { width: 100%; }
     .dots-menu ul li:hover > .nav-link { background-color: #e9e9e9; }
     .dots-menu ul .nav-item.nav-item-parent > .nav-link { position: relative; padding: 12px 50px 12px 18px; }
@@ -97,8 +98,8 @@
     .dots-menu.dots-menu-drop:not(.dots-menu-drop-left) { width: 100%; height: 50px; }
     .dots-menu.dots-menu-drop,
     .dots-menu.dots-menu-drop.dots-menu-drop-left { position: static; }
-    .dots-menu.dots-menu-drop > .nav-item { position: static; float: right; margin-right: -5px; }
-    .dots-menu.dots-menu-drop > .nav-item ul { width: 100%; }
+    .dots-menu.dots-menu-drop > .nav-item { position: static; float: right; margin-right: -5px; cursor: pointer; }
+    .dots-menu.dots-menu-drop > .nav-item ul { width: 100%; cursor: default; }
     .dots-menu .nav-item.drop-right ul .nav-item.nav-item-parent > .nav-link:before,
     .dots-menu .nav-item.drop-right ul .nav-item.nav-item-parent:hover > .nav-link:before { left: auto; right: 9px; }
 

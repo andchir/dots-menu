@@ -1,6 +1,6 @@
 /**
  * DotsMenu https://github.com/andchir/dots-menu
- * @version 1.1.0
+ * @version 1.1.1
  * @author Andchir <andchir@gmail.com>
  * @license: MIT
  */
@@ -36,6 +36,7 @@
             dotsMenuButtonWidth: 50,
             mobileViewWindowWidth: 576,
             rightSpace: 0,
+            fixedMode: false,
             dotsMenuButtonPosition: 'right',
             selector: '.dots-menu'
         };
@@ -88,19 +89,39 @@
                         });
                         // Open drop-down menu
                         e.target.parentNode.classList.toggle('nav-item-parent-visible');
+                        self.updateDropHeight(Array.from(e.target.parentNode.querySelectorAll('ul'))[0], dotsMenu);
                     }, false);
                 }
             });
+        };
+    
+        /**
+         * Update drop menu height
+         * @param dropMenuEl
+         * @param parent
+         */
+        this.updateDropHeight = function(dropMenuEl, parent) {
+            var windowWidth = window.innerWidth;
+            var windowHeight = window.innerHeight;
+            var menuParentContainer = parent.parentNode;
+            var isMobileSize = windowWidth <= mainOptions.mobileViewWindowWidth;
+    
+            if (isMobileSize) {
+                dropMenuEl.style.height = windowHeight - (menuParentContainer.getBoundingClientRect()['height']) + 'px';
+            } else {
+                dropMenuEl.style.height = 'auto';
+            }
         };
 
         /**
          * Add special CSS classes to menu
          * @param parents
          */
-        this.updateMenuParentClass = function (parents) {
+        this.updateMenuParentClass = function(parents) {
             if (!parents) {
                 parents = Array.from(document.querySelectorAll(mainOptions.selector));
             }
+            
             parents.forEach(function(parent) {
                 Array.from(parent.querySelectorAll('li.nav-item')).forEach(function(liEl) {
                     if (liEl.querySelectorAll('ul').length > 0 && liEl.className.indexOf('nav-item-parent') === -1) {
@@ -122,6 +143,7 @@
                             e.preventDefault();
                             
                             if (liEl.parentNode === parent) {
+                                self.updateDropHeight(dropMenu, parent);
                                 // Close other
                                 var prnts = Array.from(document.querySelectorAll(mainOptions.selector));
                                 prnts.forEach(function(prnt) {
